@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/myProfileButton"
         android:layout_width="61dp"
         android:layout_height="71dp"
         android:layout_marginStart="8dp"

@@ -1,9 +1,17 @@
 package com.linkable.linkable;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,15 +25,22 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textView1;
     TextView textView2;
+    ImageView imageView;
+    String imageURL;
+    Bitmap bitmap;
+    Handler handler;
 
-    static final String URL = "http://10.91.35.108:8000/";
+    static final String URL = "http://10.91.48.96:8000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView1 = (TextView)findViewById(R.id.textView3);
-        textView2 = (TextView)findViewById(R.id.textView6);
+
+        handler = new Handler();
+        textView1 = (TextView)findViewById(R.id.bestTitleTextView);
+        textView2 = (TextView)findViewById(R.id.bestAuthorTextView);
+        imageView = (ImageView)findViewById(R.id.bestbookImage);
         book();
     }
 
@@ -41,9 +56,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
                 Data repo = response.body();
-                textView1.setText(repo.getAutor());
-                textView2.setText(repo.getLocation());
-//                Log.i("adsf", "onResponse: "+repo.getTitle());
+                textView1.setText(repo.getTitle());
+                textView2.setText(repo.getAutor());
+                imageURL = repo.getImagesource();
+                //Log.i("qwer", "onResponse: "+repo.getImagesource());
             }
 
             @Override
@@ -51,5 +67,45 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("adsf","adfadsf");
             }
         });
+
+
+
+        // url에서 이미지
+
+        Thread mThread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(imageURL);
+                    Log.i("zxcv", "url: "+ url);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setDoInput(true);
+                    conn.connect();
+
+                    InputStream is = conn.getInputStream();
+                    bitmap = BitmapFactory.decodeStream(is);
+
+                    /*handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            imageView.setImageBitmap(bitmap);
+                        }
+                    });
+                    imageView.setImageBitmap(bitmap);*/
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        mThread.start();
+
+        try {
+            mThread.join();
+            Log.i("zxcv", "asdsgsgrd" + bitmap);
+            imageView.setImageBitmap(bitmap);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
