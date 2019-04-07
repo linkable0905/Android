@@ -78,7 +78,339 @@
                     android:id="@+id/bestList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"></LinearLayout>
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/bookImage1"
+                            android:layout_width="130dp"
+                            android:layout_height="167dp"
+                            android:layout_margin="4dp" />
+
+                        <TextView
+                            android:id="@+id/bookTitleTextView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/bookAuthorTextView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_regular"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/bookImage2"
+                            android:layout_width="130dp"
+                            android:layout_height="167dp"
+                            android:layout_margin="4dp" />
+
+                        <TextView
+                            android:id="@+id/bookTitleTextView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/bookAuthorTextView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_regular"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/bookImage3"
+                            android:layout_width="130dp"
+                            android:layout_height="167dp"
+                            android:layout_margin="4dp" />
+
+                        <TextView
+                            android:id="@+id/bookTitleTextView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/bookAuthorTextView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_regular"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/bookImage4"
+                            android:layout_width="130dp"
+                            android:layout_height="167dp"
+                            android:layout_margin="4dp" />
+
+                        <TextView
+                            android:id="@+id/bookTitleTextView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/bookAuthorTextView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_regular"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/bookImage5"
+                            android:layout_width="130dp"
+                            android:layout_height="167dp"
+                            android:layout_margin="4dp" />
+
+                        <TextView
+                            android:id="@+id/bookTitleTextView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/bookAuthorTextView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_regular"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/bookImage6"
+                            android:layout_width="130dp"
+                            android:layout_height="167dp"
+                            android:layout_margin="4dp" />
+
+                        <TextView
+                            android:id="@+id/bookTitleTextView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/bookAuthorTextView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_regular"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/bookImage7"
+                            android:layout_width="130dp"
+                            android:layout_height="167dp"
+                            android:layout_margin="4dp" />
+
+                        <TextView
+                            android:id="@+id/bookTitleTextView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/bookAuthorTextView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_regular"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/bookImage8"
+                            android:layout_width="130dp"
+                            android:layout_height="167dp"
+                            android:layout_margin="4dp" />
+
+                        <TextView
+                            android:id="@+id/bookTitleTextView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/bookAuthorTextView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_regular"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/bookImage9"
+                            android:layout_width="130dp"
+                            android:layout_height="167dp"
+                            android:layout_margin="4dp" />
+
+                        <TextView
+                            android:id="@+id/bookTitleTextView9"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/bookAuthorTextView9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_regular"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/bookImage10"
+                            android:layout_width="130dp"
+                            android:layout_height="167dp"
+                            android:layout_margin="4dp" />
+
+                        <TextView
+                            android:id="@+id/bookTitleTextView10"
+                            android:layout_width="match_parent"
+                            android:layout_height="27dp"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/bookAuthorTextView10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:fontFamily="@font/notosanscjkkr_regular"
+                            android:paddingLeft="8dp"
+                            android:text="TextView"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <!--<LinearLayout
                 android:layout_width="wrap_content"
