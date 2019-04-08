@@ -1,7 +1,5 @@
 package com.linkable.linkable;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,18 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
     // adapter에 들어갈 list 입니다.
     private ArrayList<Data> listData = new ArrayList<>();
     static final String URL = "http://10.91.107.142:8000/";
-
-    String imageURL;
-    Bitmap bitmap;
 
     @NonNull
     @Override
@@ -34,9 +28,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        // Item을 하나, 하나 보여주는(bind 되는) 함수입니다.
-        holder.onBind(listData.get(position));
+    public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i) {
+        itemViewHolder.onBind(listData.get(i), itemViewHolder);
     }
 
     @Override
@@ -67,33 +60,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             imageView = itemView.findViewById(R.id.bookImage);
         }
 
-        void onBind(Data data) {
+        void onBind(Data data,ItemViewHolder viewHolder) {
             textView1.setText(data.getTitle());
             textView2.setText(data.getAutor());
-            imageURL = data.getImagesource();
-
-            // url에서 이미지
-            Thread mThread = new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        URL url = new URL(imageURL);
-                        Log.i("zxcv", "url: " + url);
-                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                        conn.setDoInput(true);
-                        conn.connect();
-
-                        InputStream is = conn.getInputStream();
-                        bitmap = BitmapFactory.decodeStream(is);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
-
-            mThread.start();
-
-            imageView.setImageBitmap(bitmap);
+            Glide.with(viewHolder.imageView.getContext()).load(data.getImagesource()).into(imageView);
         }
     }
 }

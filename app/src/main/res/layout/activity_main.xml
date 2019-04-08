@@ -85,7 +85,7 @@
                     android:textSize="24sp" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/RecommendRecyclerView"
+                    android:id="@+id/recommendRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
