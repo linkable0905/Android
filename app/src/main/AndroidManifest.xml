@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,19 +19,19 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activity.LoginActivity">
 
         </activity>
 
-        <activity android:name=".DetailActivity">
+        <activity android:name=".activity.DetailActivity">
 
         </activity>
 
-        <activity android:name=".MybooksActivity">
+        <activity android:name=".activity.MybooksActivity">
 
         </activity>
 
-        <activity android:name=".SearchActivity">
+        <activity android:name=".activity.SearchActivity">
 
         </activity>
 

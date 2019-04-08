@@ -1,7 +1,9 @@
-package com.linkable.linkable;
+package com.linkable.linkable.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.linkable.linkable.R;
 
 public class DetailActivity extends AppCompatActivity {
 

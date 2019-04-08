@@ -1,4 +1,6 @@
-package com.linkable.linkable;
+package com.linkable.linkable.activity;
+
+import com.linkable.linkable.Data;
 
 import java.util.List;
 import java.util.Map;
@@ -15,5 +17,6 @@ import retrofit2.http.QueryMap;
 public interface RetrofitExService {
     @GET("book/{id}/")
     Call<Data> gettitle(@Path("id")String id);
-
+    @GET("book/")
+    Call<List<Data>> index();
 }
