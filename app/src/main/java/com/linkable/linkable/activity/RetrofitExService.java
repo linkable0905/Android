@@ -19,4 +19,6 @@ public interface RetrofitExService {
     Call<Data> gettitle(@Path("id")String id);
     @GET("book/")
     Call<List<Data>> index();
+    @GET("user/{id}")
+    Call<List<Data>> recommend(@Path("id")String id);
 }

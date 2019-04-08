@@ -42,6 +42,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     @Override
     public int getItemCount() {
         // RecyclerView의 총 개수 입니다.
+        Log.i("qwer", "" + listData);
         return listData.size();
     }
 
@@ -72,7 +73,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             imageURL = data.getImagesource();
 
             // url에서 이미지
-
             Thread mThread = new Thread() {
                 @Override
                 public void run() {

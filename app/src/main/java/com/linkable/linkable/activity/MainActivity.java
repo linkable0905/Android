@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         authorTextView = (TextView)findViewById(R.id.bookAuthorTextView);
         book();
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.bestRecyclerView);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
                 List<Data> repo = response.body();
-                int i=0;
+                int i = 0;
                 for(Data rep: repo){
                     adapter.addItem(rep);
                 }
