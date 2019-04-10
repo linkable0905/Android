@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     String imageURL;
 
-    static final String URL = "http://10.91.107.142:8000/";
+    static final String URL = "http://10.91.124.15:8000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

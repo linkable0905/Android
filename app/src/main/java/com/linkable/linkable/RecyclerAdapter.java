@@ -1,5 +1,6 @@
 package com.linkable.linkable;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,13 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.linkable.linkable.activity.DetailActivity;
 
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
     // adapter에 들어갈 list 입니다.
     private ArrayList<Data> listData = new ArrayList<>();
-    static final String URL = "http://10.91.107.142:8000/";
+    static final String URL = "http://10.91.124.15:8000/";
 
     @NonNull
     @Override
@@ -60,10 +62,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             imageView = itemView.findViewById(R.id.bookImage);
         }
 
-        void onBind(Data data,ItemViewHolder viewHolder) {
+        void onBind(final Data data, ItemViewHolder viewHolder) {
             textView1.setText(data.getTitle());
             textView2.setText(data.getAutor());
             Glide.with(viewHolder.imageView.getContext()).load(data.getImagesource()).into(imageView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                    intent.putExtra("title", textView1.getText().toString());
+                    intent.putExtra("author", textView2.getText().toString());
+                    intent.putExtra("imageurl", data.getImagesource());
+                    intent.putExtra("description", data.getDescription());
+                    v.getContext().startActivity(intent);
+                }
+            });
+
         }
     }
 }
