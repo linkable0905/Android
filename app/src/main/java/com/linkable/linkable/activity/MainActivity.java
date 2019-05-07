@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView bookImageView;
     private RecyclerAdapter adapter1;
     private RecyclerAdapter adapter2;
+    
 
     String imageURL;
 
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         bookImageView = (ImageView)findViewById(R.id.bookImage);
         titleTextView = (TextView)findViewById(R.id.bookTitleTextView);
         authorTextView = (TextView)findViewById(R.id.bookAuthorTextView);
+
+        // 베스트셀러
         bestBook();
 
         RecyclerView bestRecyclerView = findViewById(R.id.bestRecyclerView);
@@ -55,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
         adapter1 = new RecyclerAdapter();
         bestRecyclerView.setAdapter(adapter1);
 
-
-
+        // 추천 책
         RecyclerView recommendRecyclerView = findViewById(R.id.recommendRecyclerView);
 
         LinearLayoutManager rvLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);

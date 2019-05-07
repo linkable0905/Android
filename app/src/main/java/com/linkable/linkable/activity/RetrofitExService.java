@@ -21,4 +21,14 @@ public interface RetrofitExService {
     Call<List<Data>> index();
     @GET("user/{id}")
     Call<List<Data>> recommend(@Path("id")String id);
+
+    @FormUrlEncoded
+    @POST("user/{id}/addBook")
+    Call<Data> addMyBook(@Field("node") String node);
+
+    /*
+    @FormUrlEncoded
+    @POST("login")
+    Call login(@Field("id") String id, @Field("pw") String pw);
+    */
 }

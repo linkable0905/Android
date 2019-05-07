@@ -70,6 +70,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                    intent.putExtra("bookid", data.getNode());
                     intent.putExtra("title", textView1.getText().toString());
                     intent.putExtra("author", textView2.getText().toString());
                     intent.putExtra("imageurl", data.getImagesource());

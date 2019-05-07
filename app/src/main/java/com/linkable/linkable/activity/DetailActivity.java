@@ -22,6 +22,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView descriptionTextView = findViewById(R.id.descriptionTextView);
 
         Intent intent = getIntent();
+        int bookid = intent.getIntExtra("bookid", -1);
         String title = intent.getStringExtra("title");
         String author = intent.getStringExtra("author");
         String description = intent.getStringExtra("description");
