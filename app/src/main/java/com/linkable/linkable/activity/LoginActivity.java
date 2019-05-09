@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText idText;
     EditText pwdText;
+    static String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     Log.i("plz", response.body().getToken());
+                    token=response.body().getToken();
                     Toast.makeText(getApplicationContext(),"로그인 되었습니다",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class );
                     startActivity(intent);
