@@ -20,22 +20,15 @@ import retrofit2.http.QueryMap;
 
 public interface RetrofitExService {
     @GET("book/{id}")
-<<<<<<< HEAD
     Call<Data> book(//@Header("Authorization") String token,
                     @Path("id")int id);
 
     @GET("best")
     Call<List<Data>> best();
 
-=======
-    Call<Data> book(@Path("id")int id);
-    @GET("best")
-    Call<List<Data>> best();
->>>>>>> 710840a97b6eb56276bca52b4efa4fc1cfb4ccf7
     @GET("user/{id}")
     Call<List<Data>> recommend(@Path("id")String id);
-    @FormUrlEncoded @POST("login")
-    Call<User> postFirst(@FieldMap HashMap<String, Object> parameters);
+
     @FormUrlEncoded
     @POST("login")
     Call<User> postFirst(@FieldMap HashMap<String, Object> parameters);

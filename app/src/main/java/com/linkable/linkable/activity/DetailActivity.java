@@ -11,8 +11,12 @@ import com.bumptech.glide.Glide;
 import com.linkable.linkable.Data;
 import com.linkable.linkable.R;
 
+import java.io.IOException;
 import java.util.List;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +49,20 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void BookInfo() {
+        /*Interceptor interceptor = new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader("Accept", "application/json")
+                        .addHeader("authorization", token)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        };
+        OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
+        okHttpBuilder.addInterceptor(interceptor);
+        OkHttpClient okHttpClient = okHttpBuilder.build();*/
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
