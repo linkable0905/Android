@@ -56,6 +56,15 @@ public class LoginActivity extends AppCompatActivity {
                 post(login);
             }
         });
+
+        Button signup = findViewById(R.id.signupButton);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SignUpActivity.class );
+                startActivity(intent);
+            }
+        });
     }
     public void post(HashMap<String,Object> h){
         /*Interceptor interceptor = new Interceptor() {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,15 +24,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
+    TextView best;
+    TextView recommend;
 
-    TextView titleTextView;
-    TextView authorTextView;
-    ImageView bookImageView;
     private RecyclerAdapter adapter1;
     private RecyclerAdapter adapter2;
-
-
-    String imageURL;
 
     static final String URL = "http://10.91.172.92:8000/";
 
@@ -40,11 +37,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageURL = "";
+        // 베스트 목록, 추천 책 목록
+        best = (TextView)findViewById(R.id.bestTextView);
+        recommend = (TextView)findViewById(R.id.recommendTextView);
 
-        bookImageView = (ImageView)findViewById(R.id.bookImage);
-        titleTextView = (TextView)findViewById(R.id.bookTitleTextView);
-        authorTextView = (TextView)findViewById(R.id.bookAuthorTextView);
+        best.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        recommend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         // 베스트셀러
         bestBook();

@@ -22,7 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.linkable.linkable.activity.MainActivity.URL;
 
 public class CategoryActivity extends AppCompatActivity {
-    TextView categoryTextView;
     private CategoryRecyclerAdapter adapter;
 
     @Override
@@ -32,7 +31,6 @@ public class CategoryActivity extends AppCompatActivity {
 
         category();
 
-        categoryTextView = findViewById(R.id.categoryTextView);
 
         RecyclerView categoryRecyclerView = findViewById(R.id.categoryRecyclerView);
 

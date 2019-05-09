@@ -46,7 +46,6 @@ public class SignUpActivity extends AppCompatActivity {
         pwdText = findViewById(R.id.pwdSignupText);
         emailText = findViewById(R.id.emailSignupText);
 
-
         signupButton = findViewById(R.id.signupButton);
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,19 +56,16 @@ public class SignUpActivity extends AppCompatActivity {
                 email = emailText.getText().toString();
 
                 if (name.equals("") || id.equals("") || pwd.equals("") || email.equals("")) {
-                    signupButton.setEnabled(false);
-                    signupButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Toast.makeText(getApplicationContext(),"빈 칸을 모두 채워주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    signupButton.setEnabled(true);
-                    signupButton.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-
-                    HashMap<String,Object> signup = new HashMap<>();
+                    /*HashMap<String,Object> signup = new HashMap<>();
                     signup.put("name", name);
                     signup.put("id", id);
                     signup.put("password", pwd);
                     signup.put("email", email);
-                    post(signup);
+                    post(signup);*/
+                    finish();
                 }
             }
         });
@@ -86,9 +82,8 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
+                    Log.i("signup", "회원가입 성공");
                     finish();
-                    //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    //startActivity(intent);
                 }
                 else {
                     Log.i("plz",response.headers().toString());

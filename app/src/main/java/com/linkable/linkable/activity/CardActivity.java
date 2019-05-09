@@ -22,7 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.linkable.linkable.activity.MainActivity.URL;
 
 public class CardActivity extends AppCompatActivity {
-    ImageView cardImageView;
     private CardRecyclerAdapter adapter;
 
     @Override
@@ -31,8 +30,6 @@ public class CardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_card);
 
         cardNews();
-
-        cardImageView = (ImageView) findViewById(R.id.cardImageView);
 
         RecyclerView cardRecyclerView = findViewById(R.id.cardRecyclerView);
 
