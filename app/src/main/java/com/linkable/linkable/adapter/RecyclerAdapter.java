@@ -24,7 +24,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // LayoutInflater를 이용하여 전 단계에서 만들었던 card_item.xml을 inflate 시킵니다.
+        // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
         return new ItemViewHolder(view);
@@ -32,7 +32,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i) {
-        itemViewHolder.onBind(listData.get(i), itemViewHolder);
+        itemViewHolder.onBind(listData.get(i), itemViewHolder,i);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
-    static class ItemViewHolder extends RecyclerView.ViewHolder {
+    class ItemViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView1;
         private TextView textView2;
@@ -63,7 +63,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             imageView = itemView.findViewById(R.id.bookImage);
         }
 
-        void onBind(final Data data, ItemViewHolder viewHolder) {
+        void onBind(final Data data, ItemViewHolder viewHolder, final int index) {
             textView1.setText(data.getTitle());
             textView2.setText(data.getAutor());
             Glide.with(viewHolder.imageView.getContext()).load(data.getImagesource()).into(imageView);
@@ -71,11 +71,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
-                    intent.putExtra("bookid", data.getNode());
-                    intent.putExtra("title", textView1.getText().toString());
-                    intent.putExtra("author", textView2.getText().toString());
-                    intent.putExtra("imageurl", data.getImagesource());
-                    intent.putExtra("description", data.getDescription());
+                    intent.putExtra("index",index);
                     v.getContext().startActivity(intent);
                 }
             });

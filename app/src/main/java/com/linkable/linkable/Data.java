@@ -22,7 +22,7 @@ public class Data {
         return autor;
     }
 
-    public String getDescription() {
+    public String getDiscription() {
         return description;
     }
 
@@ -37,6 +37,7 @@ public class Data {
     public int getNode() {
         return node;
     }
+
     public int getSellnum() {
         return sellnum;
     }

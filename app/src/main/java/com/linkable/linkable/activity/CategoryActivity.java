@@ -45,7 +45,7 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     public void category() {
-        Retrofit retrofit = new Retrofit.Builder()
+        /*Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -65,6 +65,6 @@ public class CategoryActivity extends AppCompatActivity {
             public void onFailure(Call<List<Data>> call, Throwable t) {
                 Log.i("adsf", "adfadsf");
             }
-        });
+        });*/
     }
 }

@@ -1,11 +1,13 @@
 package com.linkable.linkable.activity;
 
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.linkable.linkable.Data;
@@ -27,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
     ImageView bookImageView;
     private RecyclerAdapter adapter1;
     private RecyclerAdapter adapter2;
-    
+
 
     String imageURL;
 
-    static final String URL = "http://10.91.124.15:8000/";
+    static final String URL = "http://10.91.172.92:8000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         adapter2 = new RecyclerAdapter();
         recommendRecyclerView.setAdapter(adapter2);
 
-        recommendBook();
+        //recommendBook();
     }
 
     public void bestBook() {
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RetrofitExService retrofitService = retrofit.create(RetrofitExService.class);
-        Call<List<Data>> call = retrofitService.index();
+        Call<List<Data>> call = retrofitService.best();
         call.enqueue(new Callback<List<Data>>() {
             @Override
             public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
