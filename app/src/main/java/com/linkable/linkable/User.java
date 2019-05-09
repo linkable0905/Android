@@ -7,11 +7,12 @@ public class User {
     private String password;
     private String token;
 
-    public User(String userid,String email,String name,String password){
+    public User(String userid,String email,String name,String password,String token){
         this.userid=userid;
         this.email=email;
         this.name=name;
         this.password=password;
+        this.token=token;
     }
 
     public String getName() {

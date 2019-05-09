@@ -22,6 +22,9 @@ public interface RetrofitExService {
     @GET("book/{id}")
     Call<Data> book(//@Header("Authorization") String token,
                     @Path("id")int id);
+    @FormUrlEncoded
+    @POST("book/{id}")
+    Call<Data> addMyBook(@Header("Authorization") String token,@Path("id")int id,@Field("id") int pk);
 
     @GET("best")
     Call<List<Data>> best();
@@ -33,13 +36,7 @@ public interface RetrofitExService {
     @POST("login")
     Call<User> postFirst(@FieldMap HashMap<String, Object> parameters);
 
-    @FormUrlEncoded
-    @POST("user/{id}/addBook")
-    Call<Data> addMyBook(@Field("node") String node);
 
-    /*
-    @FormUrlEncoded
-    @POST("login")
-    Call login(@Field("id") String id, @Field("pw") String pw);
-    */
+
+
 }
