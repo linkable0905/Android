@@ -8,10 +8,17 @@ public class User {
     private String token;
 
     public User(String userid,String email,String name,String password){
+<<<<<<< HEAD
         this.userid = userid;
         this.email = email;
         this.name = name;
         this.password = password;
+=======
+        this.userid=userid;
+        this.email=email;
+        this.name=name;
+        this.password=password;
+>>>>>>> 710840a97b6eb56276bca52b4efa4fc1cfb4ccf7
     }
 
     public String getName() {
