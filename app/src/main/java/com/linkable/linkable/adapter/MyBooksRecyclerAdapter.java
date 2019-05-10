@@ -53,6 +53,7 @@ public class MyBooksRecyclerAdapter extends RecyclerView.Adapter<MyBooksRecycler
 
         private TextView textView1;
         private TextView textView2;
+        private TextView textView3;
         private ImageView imageView;
 
         ItemViewHolder(View itemView) {

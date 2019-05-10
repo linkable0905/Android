@@ -38,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView authorTextView;
     TextView descriptionTextView;
     Button containbutton;
+    Button buybutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class DetailActivity extends AppCompatActivity {
         descriptionTextView = findViewById(R.id.descriptionTextView);
 
         containbutton = findViewById(R.id.containButton);
+        buybutton = findViewById(R.id.buyButton); //임시로 만들었습니다.
         containbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +59,13 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        buybutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MybooksActivity.class);
+                getApplicationContext().startActivity(intent);
+            }
+        });
 
         Intent intent = getIntent();
         pk = intent.getIntExtra("index",-1);
@@ -65,20 +74,6 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void bookInfo() {
-        /*Interceptor interceptor = new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
-                Request newRequest = chain.request().newBuilder()
-                        .addHeader("Accept", "application/json")
-                        .addHeader("authorization", token)
-                        .build();
-                return chain.proceed(newRequest);
-            }
-        };
-        OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
-        okHttpBuilder.addInterceptor(interceptor);
-        OkHttpClient okHttpClient = okHttpBuilder.build();*/
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -119,7 +114,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
                 else {
                     Log.i("addbook", "실패");
-                    //Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -24,6 +24,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.linkable.linkable.activity.LoginActivity.token;
+
 public class MainActivity extends AppCompatActivity {
     TextView best;
     TextView recommend;
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         adapter2 = new RecyclerAdapter();
         recommendRecyclerView.setAdapter(adapter2);
 
-        //recommendBook();
+        recommendBook();
     }
 
     public void bestBook() {
@@ -112,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RetrofitExService retrofitService = retrofit.create(RetrofitExService.class);
-        Call<List<Data>> call = retrofitService.recommend("1");
+        Call<List<Data>> call = retrofitService.recommend("Token "+token);
         call.enqueue(new Callback<List<Data>>() {
             @Override
             public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {

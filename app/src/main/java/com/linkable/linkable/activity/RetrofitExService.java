@@ -19,23 +19,37 @@ import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public interface RetrofitExService {
+    //책하나가져오기
     @GET("book/{id}")
     Call<Data> book(//@Header("Authorization") String token,
                     @Path("id")int id);
+    //책추가하기
     @FormUrlEncoded
     @POST("book/{id}")
     Call<Data> addMyBook(@Header("Authorization") String token,@Path("id")int id,@Field("id") int pk);
 
+    //베스트셀러 다 가져오기
     @GET("best")
     Call<List<Data>> best();
 
-    @GET("user/{id}")
-    Call<List<Data>> recommend(@Path("id")String id);
+    //추천책 가져오기
+    @GET("rank")
+    Call<List<Data>> recommend(@Header("Authorization") String token);
 
+    //유저정보 가져오기
+    @GET("user/{id}")
+    Call<List<Data>> user(@Path("id")String id);
+
+    //유저의 내 책목록 가져오기
+    @GET("mybook")
+    Call<List<Data>> mybook(@Header("Authorization") String token);
+
+    //로그인하기
     @FormUrlEncoded
     @POST("login")
     Call<User> postFirst(@FieldMap HashMap<String, Object> parameters);
 
+    //회원가입하기
     @FormUrlEncoded
     @POST("register")
     Call<User> register(@FieldMap HashMap<String, Object> parameters);
