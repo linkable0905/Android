@@ -3,6 +3,7 @@ package com.linkable.linkable.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +48,7 @@ public class DetailActivity extends AppCompatActivity {
         titleTextView = findViewById(R.id.titleTextView);
         authorTextView = findViewById(R.id.authorTextView);
         descriptionTextView = findViewById(R.id.descriptionTextView);
+
         containbutton = findViewById(R.id.containButton);
         containbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,10 +113,14 @@ public class DetailActivity extends AppCompatActivity {
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                if (response.isSuccessful())
-                    Toast.makeText(getApplicationContext(),"추가",Toast.LENGTH_SHORT);
-                else
-                    Toast.makeText(getApplicationContext(),"실패",Toast.LENGTH_SHORT);
+                if (response.isSuccessful()) {
+                    Log.i("addbook", "추가됨");
+                    Toast.makeText(getApplicationContext(), "추가", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Log.i("addbook", "실패");
+                    Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

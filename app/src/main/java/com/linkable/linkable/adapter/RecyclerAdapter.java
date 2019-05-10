@@ -44,7 +44,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
     public void addItem(Data data) {
         // 외부에서 item을 추가시킬 함수입니다.
-        //if (listData.size() < 5)
+        if (listData.size() < 5)
             listData.add(data);
     }
 

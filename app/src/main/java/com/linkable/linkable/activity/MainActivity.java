@@ -1,5 +1,6 @@
 package com.linkable.linkable.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
         best.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /*Intent intent = new Intent(getApplicationContext(),MainActivity.class );
+                startActivity(intent);*/
             }
         });
 

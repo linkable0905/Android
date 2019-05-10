@@ -27,7 +27,7 @@
         android:id="@+id/cardRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="649dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:layout_editor_absoluteX="8dp" />
