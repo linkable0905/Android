@@ -36,7 +36,8 @@ public interface RetrofitExService {
     @POST("login")
     Call<User> postFirst(@FieldMap HashMap<String, Object> parameters);
 
-
-
+    @FormUrlEncoded
+    @POST("register")
+    Call<User> register(@FieldMap HashMap<String, Object> parameters);
 
 }

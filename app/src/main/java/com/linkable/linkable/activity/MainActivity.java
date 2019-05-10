@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerAdapter adapter1;
     private RecyclerAdapter adapter2;
 
-    static final String URL = "http://10.91.172.92:8000/";
+    static final String URL = "http://10.91.181.172:8000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

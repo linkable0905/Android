@@ -59,13 +59,12 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"빈 칸을 모두 채워주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    /*HashMap<String,Object> signup = new HashMap<>();
+                    HashMap<String,Object> signup = new HashMap<>();
                     signup.put("name", name);
-                    signup.put("id", id);
+                    signup.put("username", id);
                     signup.put("password", pwd);
                     signup.put("email", email);
-                    post(signup);*/
-                    finish();
+                    post(signup);
                 }
             }
         });
@@ -77,12 +76,12 @@ public class SignUpActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RetrofitExService retrofitExService = retrofit.create(RetrofitExService.class);
-        Call<User> call = retrofitExService.postFirst(h);
+        Call<User> call = retrofitExService.register(h);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    Log.i("signup", "회원가입 성공");
+                    Log.i("register", "회원가입 성공");
                     finish();
                 }
                 else {
