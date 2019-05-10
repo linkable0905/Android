@@ -115,11 +115,11 @@ public class DetailActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 if (response.isSuccessful()) {
                     Log.i("addbook", "추가됨");
-                    Toast.makeText(getApplicationContext(), "추가", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "내 책에 추가되었습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Log.i("addbook", "실패");
-                    Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
                 }
             }
 

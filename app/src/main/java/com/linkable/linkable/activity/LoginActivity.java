@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText idText;
     EditText pwdText;
-    public static String token;
+    static String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
