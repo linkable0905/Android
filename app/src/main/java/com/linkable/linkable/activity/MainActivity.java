@@ -2,11 +2,14 @@ package com.linkable.linkable.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -82,6 +85,42 @@ public class MainActivity extends AppCompatActivity {
         recommendRecyclerView.setAdapter(adapter2);
 
         recommendBook();
+
+        // 탭바
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView_main);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Intent intent;
+                switch (menuItem.getItemId()) {
+                    case R.id.menu_cardnews:
+                        intent = new Intent(getApplicationContext(), CardActivity.class);
+                        startActivity(intent);
+                        return true;
+
+                    case R.id.menu_category:
+                        intent = new Intent(getApplicationContext(), CategoryActivity.class);
+                        startActivity(intent);
+                        return true;
+
+                    case R.id.menu_home:
+                        //intent = new Intent(getApplicationContext(), MainActivity.class);
+                        //startActivity(intent);
+                        return true;
+
+                    case R.id.menu_search:
+                        intent = new Intent(getApplicationContext(), SearchActivity.class);
+                        startActivity(intent);
+                        return true;
+
+                    case R.id.menu_mybooks:
+                        intent = new Intent(getApplicationContext(), MybooksActivity.class);
+                        startActivity(intent);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
     public void bestBook() {

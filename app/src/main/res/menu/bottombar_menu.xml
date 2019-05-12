@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_cardnews"
+        android:icon="@drawable/baseline_view_stream"
+        android:title="카드뉴스"/>
+
+    <item
+        android:id="@+id/menu_category"
+        android:icon="@drawable/baseline_group_work"
+        android:title="카테고리"/>
+
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/baseline_home"
+        android:title="홈"/>
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/baseline_search_grey_36dp"
+        android:title="검색"/>
+
+    <item
+        android:id="@+id/menu_mybooks"
+        android:icon="@drawable/baseline_face"
+        android:title="내 책"/>
+</menu>

@@ -1,10 +1,14 @@
 package com.linkable.linkable.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.linkable.linkable.adapter.CardRecyclerAdapter;
@@ -39,6 +43,46 @@ public class CardActivity extends AppCompatActivity {
 
         adapter = new CardRecyclerAdapter();
         cardRecyclerView.setAdapter(adapter);
+
+        // 탭바
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView_card);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Intent intent;
+                switch (menuItem.getItemId()) {
+                    case R.id.menu_cardnews:
+                        //intent = new Intent(getApplicationContext(), CardActivity.class);
+                        //startActivity(intent);
+                        return true;
+
+                    case R.id.menu_category:
+                        intent = new Intent(getApplicationContext(), CategoryActivity.class);
+                        startActivity(intent);
+                        finish();
+                        return true;
+
+                    case R.id.menu_home:
+                        intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        return true;
+
+                    case R.id.menu_search:
+                        intent = new Intent(getApplicationContext(), SearchActivity.class);
+                        startActivity(intent);
+                        finish();
+                        return true;
+
+                    case R.id.menu_mybooks:
+                        intent = new Intent(getApplicationContext(), MybooksActivity.class);
+                        startActivity(intent);
+                        finish();
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
     public void cardNews() {
