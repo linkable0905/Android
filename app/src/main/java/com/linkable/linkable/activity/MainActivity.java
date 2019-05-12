@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 
 import com.linkable.linkable.Data;
 import com.linkable.linkable.R;
+import com.linkable.linkable.adapter.BookListRecyclerAdapter;
+import com.linkable.linkable.adapter.MyBooksRecyclerAdapter;
 import com.linkable.linkable.adapter.RecommendRecyclerAdapter;
 import com.linkable.linkable.adapter.RecyclerAdapter;
 
@@ -33,6 +36,8 @@ import static com.linkable.linkable.activity.LoginActivity.token;
 public class MainActivity extends AppCompatActivity {
     TextView best;
     TextView recommend;
+    RecyclerView bestRecyclerView;
+    RecyclerView recommendRecyclerView;
 
     private RecyclerAdapter adapter1;
     private RecommendRecyclerAdapter adapter2;
@@ -51,22 +56,25 @@ public class MainActivity extends AppCompatActivity {
         best.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(getApplicationContext(),MainActivity.class );
-                startActivity(intent);*/
+                Intent intent = new Intent(v.getContext(), BookListActivity.class);
+                intent.putExtra("str",best.getText().toString());
+                v.getContext().startActivity(intent);
             }
         });
 
         recommend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(v.getContext(), BookListActivity.class);
+                intent.putExtra("str",recommend.getText().toString());
+                v.getContext().startActivity(intent);
             }
         });
 
         // 베스트셀러
         bestBook();
 
-        RecyclerView bestRecyclerView = findViewById(R.id.bestRecyclerView);
+        bestRecyclerView = findViewById(R.id.bestRecyclerView);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
@@ -76,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         bestRecyclerView.setAdapter(adapter1);
 
         // 추천 책
-        RecyclerView recommendRecyclerView = findViewById(R.id.recommendRecyclerView);
+        recommendRecyclerView = findViewById(R.id.recommendRecyclerView);
 
         LinearLayoutManager rvLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
@@ -120,6 +128,24 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                 }
                 return false;
+            }
+        });
+
+        // swipe
+
+        final SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.mainSwipe);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                bestBook();
+                adapter1 = new RecyclerAdapter();
+                bestRecyclerView.setAdapter(adapter1);
+
+                recommendBook();
+                adapter2 = new RecommendRecyclerAdapter();
+                recommendRecyclerView.setAdapter(adapter2);
+
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }

@@ -47,6 +47,10 @@
 
         </activity>
 
+        <activity android:name=".activity.BookListActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

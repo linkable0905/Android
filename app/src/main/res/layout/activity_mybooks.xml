@@ -39,21 +39,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/mybooksSwipe"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView_mybooks"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/mybooksRecyclerView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView_mybooks"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:layout_editor_absoluteX="0dp">
 
-        </android.support.v7.widget.RecyclerView>
-    </ScrollView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mybooksRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+            </android.support.v7.widget.RecyclerView>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView_mybooks"

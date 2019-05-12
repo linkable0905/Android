@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -20,13 +21,15 @@ import retrofit2.http.QueryMap;
 
 public interface RetrofitExService {
     //책하나가져오기
-    @GET("book/{id}")
-    Call<Data> book(//@Header("Authorization") String token,
-                    @Path("id")int id);
+    @GET("book")
+    Call<Data> book(@Header("Authorization") String token, @Query("node") int node);
+
     //책추가하기
-    @FormUrlEncoded
-    @POST("book/{id}")
-    Call<Data> addMyBook(@Header("Authorization") String token,@Path("id")int id,@Field("id") int pk);
+    @POST("book")
+    Call<Data> addMyBook(@Header("Authorization") String token, @Query("node") int node);
+
+    @DELETE("book")
+    Call<Data> deleteMyBook(@Header("Authorization") String token, @Query("node") int node);
 
     //베스트셀러 다 가져오기
     @GET("best")

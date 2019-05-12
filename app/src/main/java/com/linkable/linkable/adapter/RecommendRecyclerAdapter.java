@@ -72,7 +72,7 @@ public class RecommendRecyclerAdapter extends RecyclerView.Adapter<RecommendRecy
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
-                    intent.putExtra("index", index);
+                    intent.putExtra("node",data.getNode());
                     v.getContext().startActivity(intent);
                 }
             });

@@ -1,5 +1,6 @@
 package com.linkable.linkable.adapter;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.linkable.linkable.Data;
 import com.linkable.linkable.R;
+import com.linkable.linkable.activity.DetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,9 +71,9 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Intent intent = new Intent(v.getContext(), DetailActivity.class);
-                    intent.putExtra("index",index);
-                    v.getContext().startActivity(intent);*/
+                    Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                    intent.putExtra("node",data.getNode());
+                    v.getContext().startActivity(intent);
                 }
             });
 

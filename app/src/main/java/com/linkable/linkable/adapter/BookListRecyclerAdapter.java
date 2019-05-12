@@ -1,5 +1,6 @@
 package com.linkable.linkable.adapter;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.linkable.linkable.Data;
 import com.linkable.linkable.R;
+import com.linkable.linkable.activity.DetailActivity;
 
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ public class BookListRecyclerAdapter extends RecyclerView.Adapter<BookListRecycl
     public BookListRecyclerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_item, parent, false);
         return new BookListRecyclerAdapter.ItemViewHolder(view);
     }
 
@@ -57,9 +59,9 @@ public class BookListRecyclerAdapter extends RecyclerView.Adapter<BookListRecycl
         ItemViewHolder(View itemView) {
             super(itemView);
 
-            textView1 = itemView.findViewById(R.id.bookTitleTextView);
-            textView2 = itemView.findViewById(R.id.bookAuthorTextView);
-            imageView = itemView.findViewById(R.id.bookImage);
+            textView1 = itemView.findViewById(R.id.searchTitleTextView);
+            textView2 = itemView.findViewById(R.id.searchAuthorTextView);
+            imageView = itemView.findViewById(R.id.searchImageView);
         }
 
         void onBind(final Data data, ItemViewHolder viewHolder, final int index) {
@@ -69,9 +71,9 @@ public class BookListRecyclerAdapter extends RecyclerView.Adapter<BookListRecycl
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Intent intent = new Intent(v.getContext(), DetailActivity.class);
-                    intent.putExtra("index",index);
-                    v.getContext().startActivity(intent);*/
+                    Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                    intent.putExtra("node", data.getNode());
+                    v.getContext().startActivity(intent);
                 }
             });
 

@@ -1,6 +1,7 @@
 package com.linkable.linkable.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -32,13 +33,15 @@ import static com.linkable.linkable.activity.LoginActivity.token;
 import static com.linkable.linkable.activity.MainActivity.URL;
 
 public class DetailActivity extends AppCompatActivity {
-    int pk;
+    int node;
+    String exist;
+
     ImageView detailImage;
     TextView titleTextView;
     TextView authorTextView;
     TextView descriptionTextView;
-    Button containbutton;
-    Button buybutton;
+    Button containButton;
+    Button buyButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,27 +53,32 @@ public class DetailActivity extends AppCompatActivity {
         authorTextView = findViewById(R.id.authorTextView);
         descriptionTextView = findViewById(R.id.descriptionTextView);
 
-        containbutton = findViewById(R.id.containButton);
-        buybutton = findViewById(R.id.buyButton); //임시로 만들었습니다.
-        containbutton.setOnClickListener(new View.OnClickListener() {
+        containButton = findViewById(R.id.containButton);
+        buyButton = findViewById(R.id.buyButton); //임시로 만들었습니다.
+
+        containButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addBook();
+                switch (containButton.getText().toString()){
+                    case "담기": addBook(); containButton.setText("삭제"); break;
+                    case "삭제": deleteBook(); containButton.setText("담기"); break;
+                    default: break;
+                }
             }
         });
 
-        buybutton.setOnClickListener(new View.OnClickListener() {
+        buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MybooksActivity.class);
-                getApplicationContext().startActivity(intent);
+                Uri uri = Uri.parse("http://www.yes24.com/Product/Goods/"+ node);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
 
         Intent intent = getIntent();
-        pk = intent.getIntExtra("index",-1);
+        node = intent.getIntExtra("node",-1);
         bookInfo();
-
     }
 
     public void bookInfo() {
@@ -79,15 +87,21 @@ public class DetailActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RetrofitExService retrofitService = retrofit.create(RetrofitExService.class);
-        Call call = retrofitService.book(pk+1);
+        Call call = retrofitService.book("Token " + token, node);
         call.enqueue(new Callback <Data>() {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
+                Log.i("hh",response.headers().get("exist"));
+                exist = response.headers().get("exist");
                 Data repo = response.body();
                 titleTextView.setText(repo.getTitle());
                 authorTextView.setText(repo.getAutor());
                 Glide.with(detailImage.getContext()).load(repo.getImagesource()).into(detailImage);
                 descriptionTextView.setText(repo.getDiscription());
+
+                if (exist.equals("true")) containButton.setText("삭제");
+                else
+                    containButton.setText("담기");
             }
 
             @Override
@@ -104,7 +118,7 @@ public class DetailActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RetrofitExService retrofitService = retrofit.create(RetrofitExService.class);
-        Call call = retrofitService.addMyBook("Token "+token,pk+1,pk+1);
+        Call call = retrofitService.addMyBook("Token " + token, node);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
@@ -114,6 +128,33 @@ public class DetailActivity extends AppCompatActivity {
                 }
                 else {
                     Log.i("addbook", "실패");
+                    Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void deleteBook() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RetrofitExService retrofitService = retrofit.create(RetrofitExService.class);
+        Call call = retrofitService.deleteMyBook("Token " + token, node);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                if (response.isSuccessful()) {
+                    Log.i("deletebook", "삭제됨");
+                    Toast.makeText(getApplicationContext(), "내 책에서 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Log.i("deletebook", "실패");
                     Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
                 }
             }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MybooksActivity extends AppCompatActivity {
     private MyBooksRecyclerAdapter adapter;
+    RecyclerView mybooksRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class MybooksActivity extends AppCompatActivity {
 
         myBooks();
 
-        RecyclerView mybooksRecyclerView = findViewById(R.id.mybooksRecyclerView);
+        mybooksRecyclerView = findViewById(R.id.mybooksRecyclerView);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
 
@@ -80,6 +82,19 @@ public class MybooksActivity extends AppCompatActivity {
                         return true;
                 }
                 return false;
+            }
+        });
+
+        // swipe
+
+        final SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.mybooksSwipe);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                myBooks();
+                adapter = new MyBooksRecyclerAdapter();
+                mybooksRecyclerView.setAdapter(adapter);
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
