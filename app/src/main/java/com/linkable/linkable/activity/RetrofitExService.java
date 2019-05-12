@@ -32,6 +32,14 @@ public interface RetrofitExService {
     @GET("best")
     Call<List<Data>> best();
 
+    //베스트 5개 가져오기
+    @GET("best5")
+    Call<List<Data>> best5();
+
+    //검색
+    @GET("search")
+    Call<List<Data>> search(@Query("pattern")String pattern);
+
     //추천책 가져오기
     @GET("rank")
     Call<List<Data>> recommend(@Header("Authorization") String token);
