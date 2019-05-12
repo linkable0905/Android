@@ -63,8 +63,6 @@ public class CardActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.menu_home:
-                        intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
                         finish();
                         return true;
 

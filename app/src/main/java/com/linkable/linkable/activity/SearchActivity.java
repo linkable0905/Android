@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import com.linkable.linkable.Data;
 import com.linkable.linkable.R;
 import com.linkable.linkable.adapter.RecyclerAdapter;
+import com.linkable.linkable.adapter.SearchRecyclerAdapter;
 
 import java.util.List;
 
@@ -27,15 +28,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.linkable.linkable.activity.MainActivity.URL;
 
 public class SearchActivity extends AppCompatActivity {
-    private RecyclerAdapter adapter;
+    private SearchRecyclerAdapter adapter;
     EditText search;
     ImageView searchbutton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        search=(EditText)findViewById(R.id.editText);
-        searchbutton=(ImageView)findViewById(R.id.search_button);
+        search = (EditText) findViewById(R.id.editText);
+        searchbutton = (ImageView) findViewById(R.id.search_button);
 
 
         searchbutton.setOnClickListener(new View.OnClickListener() {
@@ -45,11 +47,11 @@ public class SearchActivity extends AppCompatActivity {
                 search(querry);
                 RecyclerView bestRecyclerView = findViewById(R.id.searchRecyclerView);
 
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
 
                 bestRecyclerView.setLayoutManager(linearLayoutManager);
 
-                adapter = new RecyclerAdapter();
+                adapter = new SearchRecyclerAdapter();
                 bestRecyclerView.setAdapter(adapter);
             }
         });
@@ -75,8 +77,6 @@ public class SearchActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.menu_home:
-                        intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
                         finish();
                         return true;
 
@@ -97,6 +97,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
+
     public void search(String s) {
         Log.i("asdf","asdf");
         Retrofit retrofit = new Retrofit.Builder()

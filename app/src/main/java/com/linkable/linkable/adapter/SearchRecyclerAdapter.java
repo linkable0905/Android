@@ -24,7 +24,7 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
     public SearchRecyclerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_item, parent, false);
         return new SearchRecyclerAdapter.ItemViewHolder(view);
     }
 
@@ -43,7 +43,6 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
 
     public void addItem(Data data) {
         // 외부에서 item을 추가시킬 함수입니다.
-        //if (listData.size() < 5)
         listData.add(data);
     }
 
@@ -58,9 +57,9 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
         ItemViewHolder(View itemView) {
             super(itemView);
 
-            textView1 = itemView.findViewById(R.id.bookTitleTextView);
-            textView2 = itemView.findViewById(R.id.bookAuthorTextView);
-            imageView = itemView.findViewById(R.id.bookImage);
+            textView1 = itemView.findViewById(R.id.searchTitleTextView);
+            textView2 = itemView.findViewById(R.id.searchAuthorTextView);
+            imageView = itemView.findViewById(R.id.searchImageView);
         }
 
         void onBind(final Data data,ItemViewHolder viewHolder, final int index) {

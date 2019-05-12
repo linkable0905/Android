@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.linkable.linkable.Data;
 import com.linkable.linkable.R;
+import com.linkable.linkable.adapter.RecommendRecyclerAdapter;
 import com.linkable.linkable.adapter.RecyclerAdapter;
 
 import java.util.List;
@@ -34,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
     TextView recommend;
 
     private RecyclerAdapter adapter1;
-    private RecyclerAdapter adapter2;
+    private RecommendRecyclerAdapter adapter2;
 
-    static final String URL = "http://10.91.181.172:8000/";
+    static final String URL = "http://10.91.196.143:8000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         recommendRecyclerView.setLayoutManager(rvLinearLayoutManager);
 
-        adapter2 = new RecyclerAdapter();
+        adapter2 = new RecommendRecyclerAdapter();
         recommendRecyclerView.setAdapter(adapter2);
 
         recommendBook();
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RetrofitExService retrofitService = retrofit.create(RetrofitExService.class);
-        Call<List<Data>> call = retrofitService.best();
+        Call<List<Data>> call = retrofitService.best5();
         call.enqueue(new Callback<List<Data>>() {
             @Override
             public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {

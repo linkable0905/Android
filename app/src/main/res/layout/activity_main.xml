@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView_main"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         tools:layout_editor_absoluteX="0dp">
 
