@@ -15,7 +15,6 @@ import android.widget.ImageView;
 
 import com.linkable.linkable.Data;
 import com.linkable.linkable.R;
-import com.linkable.linkable.adapter.RecyclerAdapter;
 import com.linkable.linkable.adapter.SearchRecyclerAdapter;
 
 import java.util.List;
@@ -64,8 +63,8 @@ public class SearchActivity extends AppCompatActivity {
                 Intent intent;
 
                 switch (menuItem.getItemId()) {
-                    case R.id.menu_cardnews:
-                        intent = new Intent(getApplicationContext(), CardActivity.class);
+                    case R.id.menu_gauge:
+                        intent = new Intent(getApplicationContext(), GaugeActivity.class);
                         startActivity(intent);
                         finish();
                         return true;

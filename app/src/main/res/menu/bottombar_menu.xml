@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_cardnews"
+        android:id="@+id/menu_gauge"
         android:icon="@drawable/baseline_view_stream"
-        android:title="카드뉴스"/>
+        android:title="취향대로" />
 
     <item
         android:id="@+id/menu_category"

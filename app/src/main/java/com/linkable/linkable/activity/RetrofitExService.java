@@ -1,5 +1,6 @@
 package com.linkable.linkable.activity;
 
+import com.linkable.linkable.Category;
 import com.linkable.linkable.Data;
 import com.linkable.linkable.User;
 
@@ -28,6 +29,7 @@ public interface RetrofitExService {
     @POST("book")
     Call<Data> addMyBook(@Header("Authorization") String token, @Query("node") int node);
 
+    //책삭제하기
     @DELETE("book")
     Call<Data> deleteMyBook(@Header("Authorization") String token, @Query("node") int node);
 
@@ -65,4 +67,20 @@ public interface RetrofitExService {
     @POST("register")
     Call<User> register(@FieldMap HashMap<String, Object> parameters);
 
+    //카테고리 목록
+    @GET("category")
+    Call<List<Category>> category(@Header("Authorization") String token);
+
+    //카테고리별 책목록
+    @GET("category_detail")
+    Call<List<Data>> categoryList(@Query("category") String category);
+
+    @POST("category_user")
+    Call<Category> categoryStar(@Header("Authorization") String token, @Query("category_id") int id);
+
+    @DELETE("category_user")
+    Call<Category> deleteCategoryStar(@Header("Authorization") String token, @Query("category_id") int id);
+
+    @GET("gauge")
+    Call<List<Data>> gauge(@Header("Authorization") String token, @Field("list") String list);
 }

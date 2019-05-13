@@ -48,18 +48,15 @@ public class BookListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         str = intent.getStringExtra("str");
 
+        title.setText(str);
+
         switch (str) {
             case "베스트":
-                title.setText("베스트");
-                bestList();
-                break;
+                bestList(); break;
             case "추천 책":
-                title.setText("추천 책");
-                recommendList();
-                break;
+                recommendList(); break;
             default:
-                finish();
-                break;
+                categoryList(); break;
         }
 
     }
@@ -95,6 +92,30 @@ public class BookListActivity extends AppCompatActivity {
                 .build();
         RetrofitExService retrofitService = retrofit.create(RetrofitExService.class);
         Call<List<Data>> call = retrofitService.recommend("Token "+token);
+        call.enqueue(new Callback<List<Data>>() {
+            @Override
+            public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
+                List<Data> repo = response.body();
+                for(Data rep: repo){
+                    adapter.addItem(rep);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Data>> call, Throwable t) {
+                Log.i("adsf", "adfadsf");
+            }
+        });
+    }
+
+    public void categoryList() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RetrofitExService retrofitService = retrofit.create(RetrofitExService.class);
+        Call<List<Data>> call = retrofitService.categoryList(str);
         call.enqueue(new Callback<List<Data>>() {
             @Override
             public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {

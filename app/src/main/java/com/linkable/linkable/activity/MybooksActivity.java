@@ -10,7 +10,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 import static com.linkable.linkable.activity.LoginActivity.token;
 import static com.linkable.linkable.activity.MainActivity.URL;
@@ -54,8 +53,8 @@ public class MybooksActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Intent intent;
                 switch (menuItem.getItemId()) {
-                    case R.id.menu_cardnews:
-                        intent = new Intent(getApplicationContext(), CardActivity.class);
+                    case R.id.menu_gauge:
+                        intent = new Intent(getApplicationContext(), GaugeActivity.class);
                         startActivity(intent);
                         finish();
                         return true;

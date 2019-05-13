@@ -1,7 +1,6 @@
 package com.linkable.linkable.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,14 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.linkable.linkable.Data;
 import com.linkable.linkable.R;
-import com.linkable.linkable.adapter.BookListRecyclerAdapter;
-import com.linkable.linkable.adapter.MyBooksRecyclerAdapter;
 import com.linkable.linkable.adapter.RecommendRecyclerAdapter;
 import com.linkable.linkable.adapter.RecyclerAdapter;
 
@@ -42,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerAdapter adapter1;
     private RecommendRecyclerAdapter adapter2;
 
-    static final String URL = "http://10.91.196.143:8000/";
+    static public final String URL = "http://10.91.212.129:8000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Intent intent;
                 switch (menuItem.getItemId()) {
-                    case R.id.menu_cardnews:
-                        intent = new Intent(getApplicationContext(), CardActivity.class);
+                    case R.id.menu_gauge:
+                        intent = new Intent(getApplicationContext(), GaugeActivity.class);
                         startActivity(intent);
                         return true;
 
