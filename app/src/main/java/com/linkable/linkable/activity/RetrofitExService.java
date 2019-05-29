@@ -81,6 +81,7 @@ public interface RetrofitExService {
     @DELETE("category_user")
     Call<Category> deleteCategoryStar(@Header("Authorization") String token, @Query("category_id") int id);
 
-    @GET("gauge")
+    @FormUrlEncoded
+    @POST("gauge")
     Call<List<Data>> gauge(@Header("Authorization") String token, @Field("list") String list);
 }

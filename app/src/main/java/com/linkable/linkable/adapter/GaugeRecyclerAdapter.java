@@ -21,8 +21,6 @@ public class GaugeRecyclerAdapter extends RecyclerView.Adapter<GaugeRecyclerAdap
     // adapter에 들어갈 list 입니다.
     private ArrayList<Category> listData = new ArrayList<>();
 
-    static public String gaugeList = "";
-
     @NonNull
     @Override
     public GaugeRecyclerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -52,18 +50,36 @@ public class GaugeRecyclerAdapter extends RecyclerView.Adapter<GaugeRecyclerAdap
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
     static class ItemViewHolder extends RecyclerView.ViewHolder {
-        private TextView textView;
-        private SeekBar seekBar;
+        public TextView textView;
+        public SeekBar seekBar;
+        public TextView textView2;
 
         ItemViewHolder(View itemView) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.gaugeCategoryTextView);
             seekBar = itemView.findViewById(R.id.gaugeBar);
+            textView2 = itemView.findViewById(R.id.textView2);
         }
 
         void onBind(final Category data, ItemViewHolder viewHolder) {
             textView.setText(data.getCategory());
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    textView2.setText(""+progress);
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
         }
     }
 }

@@ -10,14 +10,18 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.linkable.linkable.Category;
 import com.linkable.linkable.Data;
-import com.linkable.linkable.adapter.BookListRecyclerAdapter;
 import com.linkable.linkable.adapter.GaugeCategoryRecyclerAdapter;
 import com.linkable.linkable.adapter.GaugeRecyclerAdapter;
 import com.linkable.linkable.R;
+import com.linkable.linkable.adapter.RecyclerAdapter;
 
 import java.util.List;
 
@@ -30,36 +34,39 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.linkable.linkable.activity.CategoryActivity.selected;
 import static com.linkable.linkable.activity.LoginActivity.token;
 import static com.linkable.linkable.activity.MainActivity.URL;
-import static com.linkable.linkable.adapter.GaugeRecyclerAdapter.gaugeList;
+//import static com.linkable.linkable.adapter.GaugeRecyclerAdapter.gaugeList;
 
 public class GaugeActivity extends AppCompatActivity {
     private GaugeRecyclerAdapter adapter2;
     private GaugeCategoryRecyclerAdapter adapter1;
     Button button;
+    String gaugeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gauge);
 
-        RecyclerView cardRecyclerView = findViewById(R.id.gaugeRecyclerView);
+        gaugeList = "";
+
+        final RecyclerView gaugeRecyclerView = findViewById(R.id.gaugeListRecyclerView);
 
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
-        cardRecyclerView.setLayoutManager(linearLayoutManager1);
+        gaugeRecyclerView.setLayoutManager(linearLayoutManager1);
 
+        myCategory();
         adapter1 = new GaugeCategoryRecyclerAdapter();
-        cardRecyclerView.setAdapter(adapter1);
+        gaugeRecyclerView.setAdapter(adapter1);
 
-        RecyclerView gaugeListRV = findViewById(R.id.gaugeListRecyclerView);
+        final RecyclerView gaugeListRV = findViewById(R.id.gaugeRecyclerView);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         gaugeListRV.setLayoutManager(linearLayoutManager2);
 
         adapter2 = new GaugeRecyclerAdapter();
-        cardRecyclerView.setAdapter(adapter2);
+        gaugeListRV.setAdapter(adapter2);
 
-        myCategory();
 
         // 탭바
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView_card);
@@ -98,12 +105,28 @@ public class GaugeActivity extends AppCompatActivity {
                 return false;
             }
         });
-/*
         // 버튼
+        button = findViewById(R.id.gaugeButton);
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                View view2 = gaugeRecyclerView.getLayoutManager().findViewByPosition(0);
+                int cnt = gaugeRecyclerView.getChildCount();
+                for (int i = 0; i < cnt; i++) {
+                    //View view = gaugeRecyclerView.getLayoutManager().findViewByPosition(i);
+                            //gaugeRecyclerView.getChildAt(i);
+                    //RecyclerView.ViewHolder childViewHolder = gaugeRecyclerView.getChildViewHolder(view);
+
+                    //String str = ((TextView) gaugeRecyclerView.findViewHolderForAdapterPosition(i).itemView.findViewById(R.id.textView2)).getText().toString();
+                    //Log.i("qwas", str);
+                    //SeekBar seekBar = findViewById(R.id.gaugeBar);
+                    //gaugeList = gaugeList + seekBar.getPmyrogress() + " ";
+                    //TextView textView = findViewById(R.id.textView2);
+                    //gaugeList = gaugeList + str + " ";
+                }
+                Log.i("qwas", "" + gaugeList);
+                gaugeList="10 20 30 ";
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(URL)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -114,10 +137,25 @@ public class GaugeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
                         List<Data> repo = response.body();
-                        for(Data rep: repo){
+                        for (Data rep: repo) {
                             adapter1.addItem(rep);
                         }
                         adapter1.notifyDataSetChanged();
+
+                        ViewGroup.LayoutParams categoryParams = gaugeListRV.getLayoutParams();
+                        categoryParams.height = 0;
+                        categoryParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                        gaugeListRV.setLayoutParams(categoryParams);
+                        gaugeListRV.setVisibility(View.INVISIBLE);
+
+                        button.setVisibility(View.INVISIBLE);
+                        button.setEnabled(false);
+
+                        ScrollView scrollView = findViewById(R.id.listScrollView);
+                        ViewGroup.LayoutParams listParams = scrollView.getLayoutParams();
+                        listParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                        listParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                        scrollView.setLayoutParams(listParams);
                     }
 
                     @Override
@@ -126,7 +164,7 @@ public class GaugeActivity extends AppCompatActivity {
                     }
                 });
             }
-        });*/
+        });
     }
 
     public void myCategory() {
@@ -141,12 +179,19 @@ public class GaugeActivity extends AppCompatActivity {
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 Log.i("h", response.headers().get("list"));
                 selected = response.headers().get("list");
+
+                String[] strnums = selected.split(" ");
+                int[] nums = new int[strnums.length];
+                for (int i = 0; i < strnums.length; i++)
+                     nums[i] = Integer.parseInt(strnums[i]);
+                sort(nums);
+
                 List<Category> repo = response.body();
                 for(Category rep: repo) {
-                    String[] nums = selected.split(" ");
-                    for (String i : nums) {
-                        if (Integer.parseInt(i) == rep.getId()) {
-                            Log.i("selectedid", i);
+                    //String[] nums = selected.split(" ");
+                    for (int i : nums) {
+                        if (i == rep.getId()) {
+                            Log.i("selectedid", "" + i);
                             adapter2.addItem(rep);
                         }
                     }
@@ -159,5 +204,22 @@ public class GaugeActivity extends AppCompatActivity {
                 Log.i("adsf", "adfadsf");
             }
         });
+    }
+
+    public void sort(int[] data){
+        int size = data.length;
+        int min; //최소값을 가진 데이터의 인덱스 저장 변수
+        int temp;
+
+        for(int i = 0; i < size - 1; i++){ // size-1 : 마지막 요소는 자연스럽게 정렬됨
+            min = i;
+            for(int j = i + 1; j < size; j++){
+                if(data[min] > data[j])
+                    min = j;
+            }
+            temp = data[min];
+            data[min] = data[i];
+            data[i] = temp;
+        }
     }
 }

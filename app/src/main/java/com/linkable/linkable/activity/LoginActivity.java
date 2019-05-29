@@ -102,8 +102,8 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     Log.i("plz",response.headers().toString());
                     Toast.makeText(getApplicationContext(),"아이디나 비밀번호가 올바르지 않습니다",Toast.LENGTH_LONG).show();
-                    idText.setText(null);
-                    pwdText.setText(null);
+                    //idText.setText(null);
+                    //pwdText.setText(null);
                 }
             }
 
