@@ -111,22 +111,22 @@ public class GaugeActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                View view2 = gaugeRecyclerView.getLayoutManager().findViewByPosition(0);
-                int cnt = gaugeRecyclerView.getChildCount();
-                for (int i = 0; i < cnt; i++) {
-                    //View view = gaugeRecyclerView.getLayoutManager().findViewByPosition(i);
-                            //gaugeRecyclerView.getChildAt(i);
-                    //RecyclerView.ViewHolder childViewHolder = gaugeRecyclerView.getChildViewHolder(view);
+                //View view2 = gaugeRecyclerView.getLayoutManager().findViewByPosition(0);
+                int cnt = gaugeListRV.getChildCount();
+                Log.i("qwas", "" + cnt);
 
-                    //String str = ((TextView) gaugeRecyclerView.findViewHolderForAdapterPosition(i).itemView.findViewById(R.id.textView2)).getText().toString();
-                    //Log.i("qwas", str);
-                    //SeekBar seekBar = findViewById(R.id.gaugeBar);
-                    //gaugeList = gaugeList + seekBar.getPmyrogress() + " ";
-                    //TextView textView = findViewById(R.id.textView2);
-                    //gaugeList = gaugeList + str + " ";
+                String str = ((TextView) gaugeListRV.findViewHolderForAdapterPosition(0).itemView.findViewById(R.id.textView2)).getText().toString();
+                gaugeList = gaugeList + str;
+
+                for (int i = 1; i < cnt; i++) {
+                    gaugeList = gaugeList + " ";
+
+                    str = ((TextView) gaugeListRV.findViewHolderForAdapterPosition(i).itemView.findViewById(R.id.textView2)).getText().toString();
+                    Log.i("qwas", str);
+                    gaugeList = gaugeList + str;
                 }
                 Log.i("qwas", "" + gaugeList);
-                gaugeList="10 20 30 ";
+                //gaugeList="10 20 30";
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(URL)
                         .addConverterFactory(GsonConverterFactory.create())

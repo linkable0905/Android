@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -53,6 +54,7 @@ public class GaugeRecyclerAdapter extends RecyclerView.Adapter<GaugeRecyclerAdap
         public TextView textView;
         public SeekBar seekBar;
         public TextView textView2;
+        public Button button;
 
         ItemViewHolder(View itemView) {
             super(itemView);

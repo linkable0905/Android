@@ -97,7 +97,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
                                 .addConverterFactory(GsonConverterFactory.create())
                                 .build();
                         RetrofitExService retrofitExService = retrofit.create(RetrofitExService.class);
-                        Call<Category> call = retrofitExService.categoryStar("Token " + token, data.getId()+1);
+                        Call<Category> call = retrofitExService.categoryStar("Token " + token, data.getId()-1);
                         call.enqueue(new Callback<Category>() {
                             @Override
                             public void onResponse(Call<Category> call, Response<Category> response) {
@@ -121,7 +121,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
                                 .addConverterFactory(GsonConverterFactory.create())
                                 .build();
                         RetrofitExService retrofitExService = retrofit.create(RetrofitExService.class);
-                        Call call = retrofitExService.deleteCategoryStar("Token "+ token, data.getId());
+                        Call call = retrofitExService.deleteCategoryStar("Token "+ token, data.getId()-1);
                         call.enqueue(new Callback() {
                             @Override
                             public void onResponse(Call call, Response response) {
