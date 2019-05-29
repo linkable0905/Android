@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.linkable.linkable.Category;
 import com.linkable.linkable.Data;
@@ -137,6 +138,7 @@ public class GaugeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
                         List<Data> repo = response.body();
+                        if (repo.isEmpty()) finish();
                         for (Data rep: repo) {
                             adapter1.addItem(rep);
                         }
@@ -181,15 +183,18 @@ public class GaugeActivity extends AppCompatActivity {
                 selected = response.headers().get("list");
 
                 String[] strnums = selected.split(" ");
+                Log.i("asd", strnums.toString());
                 int[] nums = new int[strnums.length];
-                for (int i = 0; i < strnums.length; i++)
-                     nums[i] = Integer.parseInt(strnums[i]);
-                sort(nums);
+                for (int i = 0; i < strnums.length; i++) {
+                    nums[i] = Integer.parseInt(strnums[i]);
+                    Log.i("asd", "" + nums[i]);
+                }
+                //sort(nums);
 
                 List<Category> repo = response.body();
-                for(Category rep: repo) {
-                    //String[] nums = selected.split(" ");
-                    for (int i : nums) {
+                for (int i : nums) {
+                    for(Category rep: repo) {
+                        //String[] nums = selected.split(" ");
                         if (i == rep.getId()) {
                             Log.i("selectedid", "" + i);
                             adapter2.addItem(rep);

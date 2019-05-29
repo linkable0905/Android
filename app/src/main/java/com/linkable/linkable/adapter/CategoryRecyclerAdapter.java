@@ -79,9 +79,11 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
             starButton.setChecked(false);
             String[] nums = selected.split(" ");
             for (String i : nums) {
-                if (Integer.parseInt(i) == data.getId()) {
-                    Log.i("selectedid", i);
-                    starButton.setChecked(true);
+                if (i != "") {
+                    if (Integer.parseInt(i) == data.getId()) {
+                        Log.i("selectedid", i);
+                        starButton.setChecked(true);
+                    }
                 }
             }
 

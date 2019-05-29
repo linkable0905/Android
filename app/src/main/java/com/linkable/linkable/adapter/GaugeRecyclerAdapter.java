@@ -15,8 +15,18 @@ import com.bumptech.glide.Glide;
 import com.linkable.linkable.Category;
 import com.linkable.linkable.Data;
 import com.linkable.linkable.R;
+import com.linkable.linkable.activity.RetrofitExService;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.linkable.linkable.activity.LoginActivity.token;
+import static com.linkable.linkable.activity.MainActivity.URL;
 
 public class GaugeRecyclerAdapter extends RecyclerView.Adapter<GaugeRecyclerAdapter.ItemViewHolder> {
     // adapter에 들어갈 list 입니다.
@@ -54,7 +64,6 @@ public class GaugeRecyclerAdapter extends RecyclerView.Adapter<GaugeRecyclerAdap
         public TextView textView;
         public SeekBar seekBar;
         public TextView textView2;
-        public Button button;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -64,7 +73,7 @@ public class GaugeRecyclerAdapter extends RecyclerView.Adapter<GaugeRecyclerAdap
             textView2 = itemView.findViewById(R.id.textView2);
         }
 
-        void onBind(final Category data, ItemViewHolder viewHolder) {
+        void onBind(final Category data, final ItemViewHolder viewHolder) {
             textView.setText(data.getCategory());
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
