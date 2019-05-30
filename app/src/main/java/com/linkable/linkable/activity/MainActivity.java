@@ -179,9 +179,12 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Data>>() {
             @Override
             public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
+                int count = 0;
                 List<Data> repo = response.body();
                 for(Data rep: repo){
                     adapter2.addItem(rep);
+                    count++;
+                    if (count == 5) break;
                 }
                 adapter2.notifyDataSetChanged();
             }
